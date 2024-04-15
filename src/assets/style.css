@@ -14,6 +14,11 @@ p {
   padding: 0;
 }
 
+*:focus {
+  outline: 2px rgb(51, 148, 238) double;
+  border-radius: 4px;
+}
+
 .h2 {
   font-size: 20px;
   margin-bottom: 10px;
@@ -54,9 +59,6 @@ fieldset:last-child {
 .form-group-item {
   -ms-flex-preferred-size: 32%;
       flex-basis: 32%;
-}
-
-.form-group-item {
   margin-bottom: 10px;
 }
 
@@ -81,6 +83,7 @@ input[type=date],
 input[type=tel],
 .select-styled {
   font-size: inherit;
+  height: 35px;
   width: 100%;
   padding: 8px;
   border-radius: 4px;
@@ -91,14 +94,48 @@ input[type=tel],
 
 .invalid {
   border: 0.5px solid rgb(205, 10, 10) !important;
-  -webkit-box-shadow: 0px 0px 6px -3px rgba(205, 10, 10, 0.7);
-          box-shadow: 0px 0px 6px -3px rgba(205, 10, 10, 0.7);
+  -webkit-box-shadow: 0px 0px 6px -3px rgba(205, 10, 10, 0.6);
+          box-shadow: 0px 0px 6px -3px rgba(205, 10, 10, 0.6);
   border-radius: 4px;
 }
 
 input[type=radio] {
   -webkit-transform: translateY(20%);
           transform: translateY(20%);
+}
+
+div[type=radio], input[type=radio], div[type=checkbox], input[type=checkbox] {
+  outline: none;
+}
+
+input[type=checkbox]:focus::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  outline: 2px rgb(120, 215, 244) double;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  top: 0;
+}
+
+input[type=radio]:focus::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  outline: 2px rgb(120, 215, 244) double;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  top: 0;
 }
 
 input[type=submit] {
@@ -119,23 +156,39 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-.error {
+.tooltip {
+  position: relative;
+}
+
+.invalid-tooltip {
   color: white;
   background-color: rgba(205, 10, 10, 0.7);
-  margin-top: 2px;
+  margin-top: 1px;
   border-radius: 4px;
   padding: 3px 8px;
   font-size: 0.7em;
+  line-height: 1em;
+  height: 10px;
+  position: absolute;
+  z-index: 1;
 }
 
 .custom-select {
   position: relative;
   display: inline-block;
+  line-height: 1.5em;
+  min-width: 180px;
+  -ms-flex-preferred-size: 32%;
+      flex-basis: 32%;
 }
 
 .select-styled {
   cursor: pointer;
-  width: 180px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 30px;
 }
 
 .select-styled:after {
@@ -162,7 +215,7 @@ input[type=submit]:hover {
   margin: 0;
   padding: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .select-options li {
